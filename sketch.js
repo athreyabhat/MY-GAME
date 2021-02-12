@@ -12,7 +12,7 @@ var life2=1;
 var form;
 var blast,blastImg;
 var player1name,player2name;
-var Shootingsound,ExplodingSound;
+var Shootingsound1,Shootingsound2,ExplodingSound;
 var score1=0,score2=0;
 var bg1,bg2;
 
@@ -30,10 +30,12 @@ bullet2Img=loadImage("Images/Fireball-2.png");
 gameOverImg=loadImage("Images/game over.png");
 blastImg=loadImage("Images/boom.png");
 introBG=loadImage("Images/background-form1.jpg");
-Shootingsound=loadSound("Images/Shootingsound.wav");
+//Shootingsound=loadSound("Images/Shootingsound.wav");
 bg1=loadImage("Images/Background1.jpg")
 bg2=loadImage("Images/Background2.jpg")
 ExplodingSound=loadSound("Images/Explosion+1.wav");
+Shootingsound1=loadSound("gun1.mp3");
+Shootingsound2=loadSound("gun2.mp3");
 }
 
 function setup(){
@@ -118,7 +120,7 @@ for(var i=0;i<asteroidsGroup.length;i++){
     ExplodingSound.play();
   }
  }
-}
+
 for(var i=0;i<obstaclesGroup.length;i++){
   if(obstaclesGroup.get(i).collide(astronaut2)){
     obstaclesGroup.get(i).destroy();
@@ -202,7 +204,7 @@ text(player2name+" has won!",500,400);
 //gameOver.visible=false;
 //gameOver.addImage(gameOverImg);
 }
-
+}
 
 
 
@@ -211,7 +213,7 @@ text(player2name+" has won!",500,400);
 function spawnObstacles() {
   if(frameCount % 201 === 0) {
     var obstacle = createSprite(1200,300,10,40);
-    obstacle.debug=true;
+    obstacle.debug=false;
     obstacle.velocityX =-6;// (-6 + 3*score/100);
     
    
@@ -237,7 +239,7 @@ function spawnObstacles() {
   function spawnAsteroids() {
         if(frameCount % 401 === 0) {
           var asteroid = createSprite(1200,150,10,40);
-         asteroid.debug=true;
+         asteroid.debug=false;
          asteroid.setCollider("rectangle",0,0,200,200);
           asteroid.velocityX =-6;// (-6 + 3*score/100);
           asteroid.scale=0.5;
@@ -257,13 +259,13 @@ function spawnObstacles() {
 }
 function Lightball(){
 var bullet=createSprite(200,300,50,50);
-bullet.debug=true;
+bullet.debug=false;
 bullet.scale=0.2;
 bullet.addImage(bulletImg);
 bullet.velocityX=5;
 bullet.y=astronaut.y+20;
 bulletGroup.add(bullet);
-Shootingsound.play();
+Shootingsound1.play();
 }
 function Lightball2(){
 var bullet2=createSprite(200,300,50,50);
@@ -272,7 +274,7 @@ bullet2.addImage(bullet2Img);
 bullet2.velocityX=5;
 bullet2.y=astronaut2.y-25;
 bullet2Group.add(bullet2);
-
+Shootingsound2.play();
 }
 function blast(){
   var blast=createSprite(200,300,50,50);
@@ -284,13 +286,13 @@ function blast(){
   }
   function createAstronaut(){
     astronaut=createSprite(100,250,50,50);
-astronaut.debug=true;
+astronaut.debug=false;
 astronaut.addImage(astronautImg);
 astronaut.scale=0.3;
   }
   function createAstronaut2(){
     astronaut2=createSprite(100,500,50,50);
-astronaut2.debug=true;
+astronaut2.debug=false;
 astronaut2.addImage(astronaut2Img);
 astronaut2.scale=0.7;
   }
